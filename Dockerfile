@@ -1,25 +1,28 @@
-FROM python:3.11-slim
+# Use python:3.11-slim-bookworm (debian base, avoids Docker Hub rate limits)
+FROM python:3.11-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR /app
 
-# 1. requirements.txt 안의 git+https:// 링크 처리를 위해 런타임에 git 설치 추가
+# System dependencies: libpq-dev (postgres), fonts-noto-cjk (WeasyPrint Korean PDF)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     fonts-noto-cjk \
-    git \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. 의존성 파일 복사 및 패키지 설치
-COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies from pyproject.toml (NOT requirements.txt)
+COPY pyproject.toml .
+RUN pip install --upgrade pip && \
+    pip install .
 
-# 3. 소스 코드 복사
+# Copy application code
 COPY ./app ./app
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Production: gunicorn with single worker (memory efficient for free tier)
+CMD ["gunicorn", "app.main:app", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000", "--timeout", "120"]
