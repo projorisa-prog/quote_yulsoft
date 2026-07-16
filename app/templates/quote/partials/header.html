@@ -1,0 +1,24 @@
+<header class="quote-header">
+    <div class="header-left">
+        <h1 class="quote-title">견적서</h1>
+        <div class="quote-meta">
+            <span class="quote-number">No. {{ quote.quote_number }}</span>
+            <span class="quote-date">견적일: {{ quote.created_at.strftime('%Y년 %m월 %d일') }}</span>
+            <span class="quote-valid">유효기간: {{ quote.expires_at.strftime('%Y년 %m월 %d일') }}</span>
+        </div>
+    </div>
+    
+    <div class="header-right">
+        <div class="company-info supplier">
+            <h3>공급자</h3>
+            <table class="info-table">
+                <tr><th>상호</th><td>{{ quote.supplier_info.company_name }}</td></tr>
+                <tr><th>대표자</th><td>{{ quote.supplier_info.ceo_name }}</td></tr>
+                <tr><th>사업자등록번호</th><td>{{ quote.supplier_info.biz_reg_no[:3] }}-{{ quote.supplier_info.biz_reg_no[3:5] }}-{{ quote.supplier_info.biz_reg_no[5:] }}</td></tr>
+                <tr><th>소재지</th><td>{{ quote.supplier_info.address }}</td></tr>
+                <tr><th>업태/종목</th><td>{{ quote.supplier_info.business_type }} / {{ quote.supplier_info.business_item }}</td></tr>
+                <tr><th>전화/이메일</th><td>{{ quote.supplier_info.phone }} / {{ quote.supplier_info.email }}</td></tr>
+            </table>
+        </div>
+    </div>
+</header>

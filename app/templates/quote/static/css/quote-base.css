@@ -1,0 +1,284 @@
+/* ==========================================
+   견적서 기본 스타일 (모든 디자인 공통)
+   ========================================== */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #333;
+    background: white;
+}
+
+.page-container {
+    max-width: 210mm; /* A4 width */
+    margin: 0 auto;
+    padding: 20mm 15mm;
+}
+
+/* ========== 헤더 ========== */
+.quote-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.header-left .quote-title {
+    font-size: 28pt;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.quote-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 9pt;
+    color: #666;
+}
+
+.header-right {
+    width: 45%;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+}
+
+.info-table th {
+    width: 30%;
+    text-align: left;
+    padding: 4px 8px;
+    color: #666;
+    font-weight: 500;
+    background: #fafafa;
+    border: 1px solid #eee;
+}
+
+.info-table td {
+    padding: 4px 8px;
+    border: 1px solid #eee;
+}
+
+/* ========== 고객 섹션 ========== */
+.customer-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.customer-section h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ========== 항목 테이블 ========== */
+.items-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 12pt;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+}
+
+.items-table th,
+.items-table td {
+    border: 1px solid #ddd;
+    padding: 8px 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.items-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+}
+
+.items-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.items-table tbody tr:hover {
+    background: #f0f4f8;
+}
+
+.text-right { text-align: right; }
+.text-red { color: #e74c3c; }
+
+/* 컬럼 너비 */
+.col-no { width: 5%; }
+.col-area { width: 12%; }
+.col-task { width: 20%; }
+.col-days { width: 15%; }
+.col-qty { width: 7%; }
+.col-price { width: 12%; }
+.col-total { width: 12%; }
+.col-exclude { width: 8%; }
+.col-memo { width: 9%; }
+
+/* 요일 배지 */
+.days-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+}
+
+.days-badge span {
+    display: inline-block;
+    padding: 1px 5px;
+    font-size: 7pt;
+    font-weight: 600;
+    border-radius: 3px;
+    background: #e8e8e8;
+    color: #555;
+}
+
+/* ========== 합계 섹션 ========== */
+.totals-section {
+    margin-bottom: 30px;
+}
+
+.totals-table {
+    width: 300px;
+    margin-left: auto;
+    border-collapse: collapse;
+    font-size: 10pt;
+}
+
+.totals-table th,
+.totals-table td {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+}
+
+.totals-table th {
+    width: 120px;
+    text-align: left;
+    background: #f5f5f5;
+    font-weight: 500;
+}
+
+.totals-table td {
+    text-align: right;
+}
+
+.discount-row td {
+    color: #e74c3c;
+}
+
+.grand-total {
+    background: #1a1a1a !important;
+    color: white !important;
+    font-size: 11pt;
+}
+
+.grand-total th,
+.grand-total td {
+    border-color: #1a1a1a !important;
+}
+
+/* ========== 결제/비고 ========== */
+.payment-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.payment-section h3 {
+    font-size: 10pt;
+    margin-bottom: 8px;
+}
+
+.payment-section p {
+    font-size: 9pt;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.note {
+    font-size: 8pt !important;
+    color: #999 !important;
+}
+
+/* ========== 서명/도장 ========== */
+.signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.signature-box {
+    width: 45%;
+    text-align: center;
+}
+
+.signature-box h4 {
+    font-size: 10pt;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.sign-area {
+    height: 60px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.signature-box p {
+    font-size: 9pt;
+    color: #999;
+}
+
+/* ========== 유틸리티 ========== */
+.format-currency {
+    font-family: 'Pretendard', monospace;
+}
+
+/* 페이지 나눔 방지 */
+.items-table tbody tr {
+    page-break-inside: avoid;
+}
+
+/* 프린트 최적화 */
+@media print {
+    .page-container {
+        padding: 0;
+        max-width: none;
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

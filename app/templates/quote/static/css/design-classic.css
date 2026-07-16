@@ -1,0 +1,135 @@
+/* ==========================================
+   디자인: Classic (관공서/전통 스타일)
+   ========================================== */
+
+:root {
+    --primary: #1a1a2e;
+    --primary-light: #2d2d44;
+    --accent: #c49a6c;
+    --accent-light: #f5efe6;
+    --border: #ccc;
+    --border-dark: #999;
+    --bg-alt: #fafafa;
+    --text-main: #1a1a2e;
+    --text-sub: #555;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --radius: 0;
+}
+
+.quote-header {
+    border-bottom: 3px double var(--primary);
+    padding-bottom: 20px;
+}
+
+.header-left .quote-title {
+    color: var(--primary);
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.quote-meta {
+    justify-content: center;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.header-right .info-table {
+    border: 2px solid var(--primary);
+    border-radius: 0;
+}
+
+.header-right .info-table th {
+    background: var(--primary-light);
+    color: white;
+    border-color: var(--border-dark);
+}
+
+.header-right .info-table td {
+    border-color: var(--border);
+}
+
+.customer-section {
+    border: 2px solid var(--primary);
+    background: var(--accent-light);
+    border-radius: 0;
+}
+
+.customer-section h3 {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--primary);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+.section-title {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+.items-table {
+    border: 2px solid var(--primary);
+    border-radius: 0;
+}
+
+.items-table th {
+    background: var(--primary);
+    color: white;
+    font-family: 'Noto Serif KR', serif;
+    border: 1px solid var(--border-dark);
+}
+
+.items-table td {
+    border: 1px solid var(--border);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.items-table tbody tr:nth-child(even) {
+    background: var(--bg-alt);
+}
+
+.days-badge span {
+    background: var(--accent-light);
+    color: var(--primary);
+    border: 1px solid var(--accent);
+}
+
+.totals-table {
+    border: 2px solid var(--primary);
+    border-radius: 0;
+}
+
+.totals-table th {
+    background: var(--primary-light);
+    color: white;
+    border-color: var(--border-dark);
+}
+
+.totals-table td {
+    border-color: var(--border);
+}
+
+.grand-total {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+.payment-section {
+    border: 2px solid var(--primary);
+    background: var(--accent-light);
+    border-radius: 0;
+}
+
+.signature-box h4 {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--primary);
+}
+
+.sign-area {
+    border-bottom: 2px solid var(--primary);
+}

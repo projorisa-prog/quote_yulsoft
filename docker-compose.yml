@@ -1,0 +1,142 @@
+version: '3.8'
+
+services:
+  # ----------------------------------------------------------
+  # PostgreSQL Database
+  # ----------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: yulsoft-quote-db
+    environment:
+      POSTGRES_DB: yulsoft_quote
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - yulsoft-network
+
+  # ----------------------------------------------------------
+  # Redis (Cache, Session, Celery Broker)
+  # ----------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: yulsoft-quote-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - yulsoft-network
+
+  # ----------------------------------------------------------
+  # Backend API (FastAPI)
+  # ----------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: yulsoft-quote-api
+    environment:
+      - APP_ENV=development
+      - DEBUG=true
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/yulsoft_quote
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=dev-secret-key-change-in-production-min-32-chars
+      - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:8080","http://127.0.0.1:5500"]
+      - WEASYPRINT_GTK_PATH=/usr/lib/x86_64-linux-gnu
+    volumes:
+      - ./app:/app/app:ro  # 개발용 핫리로드 (프로덕션에선 제거)
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health', timeout=5).raise_for_status()"]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    networks:
+      - yulsoft-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # ----------------------------------------------------------
+  # Celery Worker (Background Tasks - PDF 생성, 알림 등)
+  # ----------------------------------------------------------
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: yulsoft-quote-worker
+    command: celery -A app.tasks.celery_app worker -l INFO -Q pdf,email,cleanup --concurrency=4
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/yulsoft_quote
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=dev-secret-key-change-in-production-min-32-chars
+    volumes:
+      - ./app:/app/app:ro
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - yulsoft-network
+
+  # ----------------------------------------------------------
+  # Celery Beat (Periodic Tasks - 만료 처리, 통계 등)
+  # ----------------------------------------------------------
+  beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: yulsoft-quote-beat
+    command: celery -A app.tasks.celery_app beat -l INFO
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/yulsoft_quote
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - yulsoft-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  yulsoft-network:
+    driver: bridge

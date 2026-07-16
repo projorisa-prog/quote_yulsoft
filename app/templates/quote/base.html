@@ -1,0 +1,94 @@
+1. Adds font preloading
+2. Adds CSS links for base and design-specific styles
+3. Adds @page and print styles with watermark support
+4. Changes the structure to use includes for partials
+5. Adds an action bar with print/download/share buttons
+6. Adds JavaScript for image download and link copying
+
+I need to output the complete modified file based on the suggested edit. The suggested edit already contains the complete HTML, so I should output that as-is since it's the "modified file" after applying the edit.
+
+Wait, the instruction says "Apply the SUGGESTED EDIT to the ORIGINAL CODE. Output the complete modified file." The suggested edit IS the complete modified file - it's a full replacement. So I should output the suggested edit code.
+
+Let me check - the suggested edit includes all the original content but reorganized into includes, plus new features. Since the user wants me to apply the edit, and the edit is a complete file, I should output the suggested edit as the result.
+
+However, I notice the suggested edit uses `{{ url_for('static', path='css/quote_base.css') }}` and similar Flask template syntax, and includes partials like `{% include 'quote/partials/header.html' %}`. This assumes a Flask/Jinja2 environment with those partial files existing.
+
+Since the instruction says to output the complete modified file, and the suggested edit is provided as the complete replacement, I'll output the suggested edit code exactly as provided<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적서 {{ quote.quote_number }} - {{ quote.customer_info.name }}</title>
+
+    <!-- 폰트 프리로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- 기본 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/quote_base.css') }}">
+
+    <!-- 디자인별 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/design_' ~ design_key ~ '.css') }}">
+
+    <!-- 워터마크 스타일 -->
+    <style>
+        @page {
+            margin: 20mm 15mm;
+            {% if quote.watermark_text %}
+            @bottom-center {
+                content: "{{ quote.watermark_text }}";
+                font-size: 8pt;
+                color: #cccccc;
+                font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+                letter-spacing: 0.5px;
+            }
+                {% endif %}
+        }
+
+        /* 프린트용 추가 스타일 */
+        @media print {
+            .no-print { display: none !important; }
+            body { margin: 0; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        {% include 'quote/partials/header.html' %}
+        {% include 'quote/partials/customer.html' %}
+        {% include 'quote/partials/items.html' %}
+        {% include 'quote/partials/totals.html' %}
+        {% include 'quote/partials/payment.html' %}
+        {% include 'quote/partials/signature.html' %}
+            </div>
+
+    <!-- 공유/다운로드 버튼 (웹 뷰에서만 표시) -->
+    <div class="no-print action-bar">
+        <button onclick="window.print()" class="btn btn-primary">🖨️ 인쇄/PDF 저장</button>
+        <button onclick="downloadImage()" class="btn btn-secondary">📸 이미지 저장</button>
+        <button onclick="copyLink()" class="btn btn-secondary">🔗 링크 복사</button>
+            </div>
+    <script>
+        function downloadImage() {
+            html2canvas(document.querySelector('.page-container'), {
+                scale: 2,
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '견적서_{{ quote.quote_number }}.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

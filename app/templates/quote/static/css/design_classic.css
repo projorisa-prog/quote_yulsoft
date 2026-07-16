@@ -1,0 +1,140 @@
+/* ==========================================
+   Classic Design - 클래식 / 관공서 / 신뢰감
+   ========================================== */
+
+:root {
+    --primary: #1a1a2e;
+    --primary-dark: #0f0f1a;
+    --accent: #c49a6c;
+    --accent-light: #f5ebe0;
+    --border: #ddd;
+    --border-strong: #999;
+    --bg-alt: #fafafa;
+    --text-main: #1a1a2e;
+    --text-sub: #555;
+    --text-red: #8b0000;
+    --shadow: 0 2px 10px rgba(0,0,0,0.05);
+    --radius: 0;
+}
+
+body { font-family: 'Noto Serif KR', 'Noto Sans KR', serif; }
+
+.page-container { padding: 25mm 20mm; }
+
+.quote-header {
+    border-bottom: 3px double var(--primary);
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+}
+
+.quote-title {
+    font-size: 30pt;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.quote-meta { justify-content: center; font-size: 10pt; }
+
+.header-right { width: 100%; }
+
+.company-info h3 {
+    text-align: center;
+    font-size: 11pt;
+    color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.info-table { border: 1px solid var(--border); }
+.info-table th, .info-table td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+}
+.info-table th { background: var(--bg-alt); font-weight: 700; }
+
+.customer-info h3 {
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 11pt;
+}
+
+.section-title {
+    text-align: center;
+    border-bottom: 3px double var(--primary);
+    font-size: 12pt;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.items-table {
+    border: 2px solid var(--primary);
+    font-size: 9pt;
+    border-radius: 0;
+}
+
+.items-table th {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid var(--border-strong);
+    padding: 12px 6px;
+    font-weight: 700;
+}
+
+.items-table td {
+    border: 1px solid var(--border);
+    padding: 10px 6px;
+}
+
+.items-table td.col-area, .items-table td.col-task { text-align: left; padding-left: 10px; }
+.items-table td.text-right { text-align: right; padding-right: 10px; }
+
+.items-table tbody tr:nth-child(even) { background: #fdfdfd; }
+
+.days-badge span {
+    border: 1px solid var(--accent);
+    color: var(--primary);
+    background: var(--accent-light);
+    font-weight: 700;
+}
+
+.totals-table {
+    border: 2px solid var(--primary);
+    border-radius: 0;
+    font-size: 10pt;
+}
+
+.totals-table th { background: var(--primary); color: #fff; font-weight: 700; }
+.totals-table td { border: 1px solid var(--border); }
+
+.totals-table .grand-total {
+    background: var(--primary-dark);
+    border: 2px solid var(--primary);
+}
+.totals-table .grand-total th, .totals-table .grand-total td {
+    color: var(--accent) !important;
+    font-size: 12pt;
+}
+
+.payment-section {
+    border: 2px solid var(--primary);
+    background: #fff;
+    border-radius: 0;
+}
+.payment-section h3 { color: var(--primary); border-bottom: 1px solid var(--accent); padding-bottom: 8px; }
+
+.signature-section { border-top: 3px double var(--primary); }
+.signature-box h4 { color: var(--primary); font-weight: 700; }
+.sign-area { border-bottom: 2px solid var(--primary); }
+.signature-box p:last-child { color: var(--primary); font-weight: 700; }
+
+@media print {
+    .action-bar { display: none; }
+}

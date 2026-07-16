@@ -1,0 +1,151 @@
+/* ==========================================
+   디자인: Color (젊은 감각/컬러 포인트)
+   ========================================== */
+
+:root {
+    --primary: #2e4057;
+    --primary-light: #3d526d;
+    --accent: #e85d75;
+    --accent-light: #fceeef;
+    --accent-soft: #ffd6dd;
+    --border: #e0e0e0;
+    --border-dark: #bdbdbd;
+    --bg-alt: #f8f9fa;
+    --text-main: #2e4057;
+    --text-sub: #757575;
+    --shadow: 0 6px 24px rgba(46, 64, 87, 0.08);
+    --radius: 12px;
+}
+
+.quote-header {
+    border-bottom: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.header-left .quote-title {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: -1px;
+}
+
+.quote-meta {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.header-right .info-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.header-right .info-table th {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border-color: transparent;
+}
+
+.header-right .info-table td {
+    border-color: var(--border);
+    color: var(--text-main);
+}
+
+.customer-section {
+    background: linear-gradient(135deg, var(--accent-light), #fff);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.customer-section h3 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.section-title {
+    color: var(--primary);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+.items-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.items-table th {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 14px 8px;
+}
+
+.items-table td {
+    border-color: var(--border);
+    padding: 12px 8px;
+}
+
+.items-table tbody tr:nth-child(even) {
+    background: var(--bg-alt);
+}
+
+.items-table tbody tr:hover {
+    background: var(--accent-light);
+}
+
+.days-badge span {
+    background: white;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    font-weight: 700;
+}
+
+.totals-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.totals-table th {
+    background: var(--bg-alt);
+    border-color: var(--border);
+    color: var(--text-main);
+}
+
+.totals-table td {
+    border-color: var(--border);
+}
+
+.grand-total {
+    background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+    color: white !important;
+}
+
+.grand-total th,
+.grand-total td {
+    border-color: transparent !important;
+}
+
+.payment-section {
+    background: linear-gradient(135deg, var(--accent-light), #fff);
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--radius);
+}
+
+.signature-box h4 {
+    color: var(--text-sub);
+}
+
+.sign-area {
+    border-bottom: 2px solid var(--accent);
+}

@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yulsoft-quote"
+version = "0.1.0"
+description = "율소프트 청소 견적 프로그램 MVP"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Core Framework
+    "fastapi[standard]>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+    
+    # Database & ORM
+    "sqlalchemy[asyncio]>=2.0.0",
+    "asyncpg>=0.29.0",
+    "alembic>=1.12.0",
+    
+    # Validation & Settings
+    "pydantic[email]>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "python-dotenv>=1.0.0",
+    
+    # Auth & Security
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.9",
+    
+    # PDF Generation (WeasyPrint for HTML->PDF)
+    "weasyprint>=61.0",
+    
+    # Utilities
+    "python-dateutil>=2.9.0",
+    "jinja2>=3.1.0",
+    "httpx>=0.27.0",
+    "email-validator>=2.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.27.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "pre-commit>=3.7.0",
+]
+prod = [
+    "gunicorn>=22.0.0",
+    "prometheus-client>=0.19.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "UP", "W", "C90", "ANN", "T20", "SIM", "RET", "ARG"]
+ignore = ["S101", "ANN001", "ANN002", "ANN003", "T201", "ARG001", "ARG002"]
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101", "T201"]
+"scripts/*" = ["S101", "T201"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]

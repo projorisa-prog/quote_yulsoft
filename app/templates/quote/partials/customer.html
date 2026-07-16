@@ -1,0 +1,20 @@
+<section class="customer-section">
+    <div class="customer-info">
+        <h3>고객</h3>
+        <table class="info-table">
+            <tr>
+                <th>성명</th><td>{{ quote.customer_info.name }}</td>
+                <th>연락처</th><td>{{ quote.customer_info.phone }}</td>
+            </tr>
+            <tr>
+                <th>주소</th><td colspan="3">{{ quote.customer_info.address }} {% if quote.customer_info.detail_address %}{{ quote.customer_info.detail_address }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>건물유형</th><td>{{ quote.customer_info.building_type }}</td>
+                {% if quote.customer_info.area_pyeong %}
+                <th>평수</th><td>{{ quote.customer_info.area_pyeong }}평</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+<section class="totals-section">
+    <table class="totals-table">
+        <tr>
+            <th>공급가액</th>
+            <td class="text-right">{{ quote.totals.subtotal | int | format_currency }}</td>
+        </tr>
+        {% if quote.totals.discount_amount > 0 %}
+        <tr class="discount-row">
+            <th>할인금액</th>
+            <td class="text-right text-red">- {{ quote.totals.discount_amount | int | format_currency }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>과세표준</th>
+            <td class="text-right">{{ quote.totals.taxable_amount | int | format_currency }}</td>
+        </tr>
+        <tr>
+            <th>부가세 (10%)</th>
+            <td class="text-right">{{ quote.totals.vat_amount | int | format_currency }}</td>
+        </tr>
+        <tr class="grand-total">
+            <th>총 견적 금액</th>
+            <td class="text-right">{{ quote.totals.grand_total | int | format_currency }}</td>
+        </tr>
+    </table>
+</section>

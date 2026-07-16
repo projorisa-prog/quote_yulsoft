@@ -1,0 +1,161 @@
+/* ==========================================
+   디자인: Modern (애플 스타일 - 기본)
+   ========================================== */
+
+:root {
+    --primary: #1d1d1f;
+    --primary-light: #333;
+    --accent: #0071e3;
+    --accent-light: #e8f0fe;
+    --border: #e5e5e5;
+    --border-dark: #d1d1d1;
+    --bg-alt: #f5f5f7;
+    --text-main: #1d1d1f;
+    --text-sub: #6e6e73;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --radius: 8px;
+}
+
+/* 헤더 */
+.quote-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+}
+
+.header-left .quote-title {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+}
+
+.quote-meta {
+    color: var(--text-sub);
+    font-size: 13px;
+}
+
+.header-right .info-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.header-right .info-table th {
+    background: var(--bg-alt);
+    border-color: var(--border);
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.header-right .info-table td {
+    border-color: var(--border);
+    color: var(--text-main);
+}
+
+/* 고객 섹션 */
+.customer-section {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.customer-section .info-table {
+    border-color: var(--border);
+}
+
+.customer-section .info-table th {
+    background: transparent;
+    color: var(--text-sub);
+}
+
+.customer-section .info-table td {
+    color: var(--text-main);
+}
+
+/* 항목 테이블 */
+.section-title {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.items-table {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.items-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    padding: 12px 8px;
+    border: none;
+}
+
+.items-table td {
+    border-color: var(--border);
+    padding: 10px 8px;
+}
+
+.items-table tbody tr:nth-child(even) {
+    background: var(--bg-alt);
+}
+
+.items-table tbody tr:hover {
+    background: var(--accent-light);
+}
+
+.days-badge span {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+/* 합계 */
+.totals-table {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.totals-table th {
+    background: var(--bg-alt);
+    border-color: var(--border);
+    color: var(--text-main);
+}
+
+.totals-table td {
+    border-color: var(--border);
+}
+
+.grand-total {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+.grand-total th,
+.grand-total td {
+    border-color: var(--primary) !important;
+}
+
+/* 결제 섹션 */
+.payment-section {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+/* 서명 */
+.signature-box h4 {
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.sign-area {
+    border-bottom: 2px solid var(--border-dark);
+}
