@@ -1,4 +1,12 @@
-from app.models.quote import Quote, QuoteItem
-from app.models.user import User, CompanyInfo, Template
+from app.models.quote import Quote, QuoteItem, QuoteTemplate, User, QuoteStatus, ServiceType, Frequency, DayOfWeek
 
-__all__ = ["Quote", "QuoteItem", "User", "CompanyInfo", "Template"]
+__all__ = [
+    "Quote",
+    "QuoteItem", 
+    "QuoteTemplate",
+    "User",
+    "QuoteStatus",
+    "ServiceType",
+    "Frequency",
+    "DayOfWeek",
+]
