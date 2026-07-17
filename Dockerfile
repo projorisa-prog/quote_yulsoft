@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Python dependencies from pyproject.toml (NOT requirements.txt)
 COPY pyproject.toml .
+# 수정: [prod] extra 포함해서 설치
 RUN pip install --upgrade pip && \
-    pip install .
-
+    pip install .[prod]
 # Copy application code
 COPY ./app ./app
 
